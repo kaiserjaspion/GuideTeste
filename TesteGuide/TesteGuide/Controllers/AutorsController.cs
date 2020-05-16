@@ -20,6 +20,16 @@ namespace TesteGuide.Controllers
             _context = context;
         }
 
+
+        /// <summary>
+        /// Retorna todos os autores no sistema já formatados para o formato de citação 
+        /// </summary>
+        /// <returns>Retorna todos os autores no sistema já formatados para o formato de citação ordenados pelo id do banco</returns>
+        /// <response code="200">Lista de Autores</response>
+        /// <response code="400">Algum parametro da sua chamada não está válido, verifique sua chamada</response>
+        /// <response code="401">API Token invalida</response>
+        /// <response code="403">Acesso negado</response>
+        /// <response code="500">Erro no processamento</response>
         // GET: api/Autors
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Autor>>> GetAutores()
@@ -30,7 +40,16 @@ namespace TesteGuide.Controllers
             }
             catch (Exception) { throw; }
         }
-        
+
+        /// <summary>
+        /// Salva um novo autor
+        /// </summary>
+        /// <returns>Retorna o autor salvo no banco</returns>
+        /// <response code="200">salva autor</response>
+        /// <response code="400">Algum parametro da sua chamada não está válido, verifique sua chamada</response>
+        /// <response code="401">API Token invalida</response>
+        /// <response code="403">Acesso negado</response>
+        /// <response code="500">Erro no processamento</response>
         // POST: api/Autors
         [HttpPost]
         public async Task<ActionResult<Autor>> PostAutor(Autor autor)
@@ -53,7 +72,16 @@ namespace TesteGuide.Controllers
             catch (Exception) { throw; }
         }
 
-
+        /// <summary>
+        /// Salva novos autores
+        /// </summary>
+        /// <returns>Retorna os autores salvo no banco ja formatados para citação</returns>
+        /// <response code="200">salva autor e os retorna formatados</response>
+        /// <response code="400">Algum parametro da sua chamada não está válido, verifique sua chamada</response>
+        /// <response code="401">API Token invalida</response>
+        /// <response code="403">Acesso negado</response>
+        /// <response code="500">Erro no processamento</response>
+        // POST: api/Autors/save
         [HttpPost]
         [Route("save")]
         public async Task<ActionResult<IEnumerable<Autor>>> PostAutors ([FromBody] List<Autor> autor)
@@ -69,7 +97,15 @@ namespace TesteGuide.Controllers
             catch (Exception) { throw; }
         }
 
-
+        /// <summary>
+        /// Deleta autor
+        /// </summary>
+        /// <returns>Retorna o autor deletado</returns>
+        /// <response code="200">Autor deletado</response>
+        /// <response code="400">Algum parametro da sua chamada não está válido, verifique sua chamada</response>
+        /// <response code="401">API Token invalida</response>
+        /// <response code="403">Acesso negado</response>
+        /// <response code="500">Erro no processamento</response>
         // DELETE: api/Autors/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Autor>> DeleteAutor(int id)
