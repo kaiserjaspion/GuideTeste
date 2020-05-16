@@ -1,0 +1,39 @@
+<mat-card>
+  <mat-card-title>
+    <h1>Home - Teste</h1>
+  </mat-card-title>
+</mat-card>
+<mat-card>
+  <form *ngIf="quantity == 0" [formGroup]="formControl">
+    <h2>Insira a quantidade de nomes</h2>
+    <input type="number" formControlName="quantidade"  style="width:100%; margin:auto;  margin-bottom:5px;">
+    <button type="button" class="btn btn-outline-dark" (click)="saveQuantity()" style="width:80%; margin:10px 10%;">Save</button>
+  </form>
+
+  <form *ngIf="quantity > 0" [formGroup]="NamesformControl">
+    <h2>Insira os nomes</h2>
+    <div formArrayName="names" *ngFor="let autor of NamesformControl.controls.names?.value; let i = index trackBy:trackByFn">
+      <ng-container [formGroupName]="i">
+        <input placeholder="Maria Correia" formControlName="name" style="width:100%; margin:auto;  margin-bottom:5px;">
+      </ng-container>
+    </div>
+    <button type="button" class="btn btn-outline-dark" (click)="saveNames()" style="width:80%; margin:10px 10%;">Save</button>
+  </form>
+</mat-card>
+
+<mat-card>
+  <h2>Nomes formatados para formato de Autor</h2>
+  <table class='table table-striped' *ngIf="autores">
+    <thead>
+      <tr>
+        <th>Nome</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let Autor of autores">
+        <td>{{ Autor.nome }}</td>
+      </tr>
+    </tbody>
+  </table>
+</mat-card>
+

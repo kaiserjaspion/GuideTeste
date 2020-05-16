@@ -1,0 +1,55 @@
+<mat-card class="scrollable-content" [style.overflow]="'auto'" style="height:935px;">
+  <h1>Autores</h1>
+
+
+
+  <p *ngIf="!autores"><em>Loading...</em></p>
+
+
+
+  <table class='table table-striped' *ngIf="autores">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let Autor of autores">
+        <td>{{ Autor.nome }}</td>
+        <td><button class="btn btn-primary" (click)="open(content,Autor)"><fa-icon [icon]="['fas', 'pencil-alt']"></fa-icon></button></td>
+        <td><button class="btn btn-danger" (click)="Delete(Autor.id)"><fa-icon [icon]="['fas', 'trash']"></fa-icon></button></td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="btn btn-outline-dark right btn-sm" (click)="newAutor(content)" style="width:10%;margin:0 5% 0 85%;"><fa-icon [icon]="['fas', 'plus']" [styles]="{'color': 'black'}"></fa-icon></button>
+
+
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Autores</h4>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="formControl">
+
+        <label style="min-width:90%; margin:auto;">
+          <i style="min-width:40%; margin-left:5%;">Nome:</i>
+          <input type="text" formControlName="nome" placeholder="Maria Correia" style="width:100%; margin:auto;">
+        </label><br />
+
+
+      </form>
+
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="close()">
+        Close
+      </button>
+      <button type="button" class="btn btn-outline-dark" (click)="save()">Save</button>
+    </div>
+  </ng-template>
+</mat-card>
+
+
